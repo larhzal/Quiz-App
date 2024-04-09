@@ -22,6 +22,15 @@ class QuizSeeder extends Seeder
         Quiz::create([
             'description' => 'L\'addition',
         ]);
+        
+        Quiz::create([
+            'description' => 'La soustraction',
+        ]);
+
+        Quiz::create([
+            'description' => 'La geometrie',
+        ]);
+
 
     }
 }

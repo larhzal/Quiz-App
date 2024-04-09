@@ -1,0 +1,54 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #2e50a5;
+    border-bottom: 2px solid #2e50a5;
+}
+
+img{
+    width: 200px;
+    padding-left: px;
+    padding-top: 0;
+}
+  
+nav .navlink{
+    color:#2e50a5;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.logo, .navigation, .account{
+    display: flex;
+    }
+
+.account .signup{
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    text-align: center;
+    padding: 8px;
+    
+}
+
+.account .signup{
+    background-color: #2e50a5;
+    border: #2e50a5;
+    border-radius: 50px;
+    margin-top: 8px;
+}
+
+.navigation, .account {
+    gap: 10px;
+}
+
+
+@media (max-width: 600px) {
+    .navigation, .account {
+      display: flex;
+      flex-direction: column;
+    }
+}
