@@ -4,15 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Question; 
 use App\Http\Requests\AddQuestionRequest;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 //use Illuminate\Support\Facades\DB;
 class QuestionController extends Controller
 {
+    use AuthorizesRequests;
     public function showQuestions()
     {
-
-        // return DB::select("select * from questions");
-
-        // // Retrieve data from the database
         $question = Question::all();
 
         return response()->json([
@@ -21,28 +19,49 @@ class QuestionController extends Controller
 
     }
 
-    public function showId($id){
-        //user details
-        $question_id = Question::find($id);
-        if(!$question_id){
+    // public function showId($id){
+    //     //user details
+    //     $question_id = Question::find($id);
+    //     if(!$question_id){
+    //         return response()->json([
+    //             'message' => 'Question not found'
+    //         ],404);
+    //     }
+    //     return response()->json([
+    //         'question' => $question_id
+    //     ],200);
+    // }
+
+    public function showId($categoryId){
+        // Fetch questions based on the quiz ID (which is equivalent to category ID)
+        $results = Question::where('id_quiz', $categoryId)->get();
+    
+        // Check if questions were found
+        if($results->isEmpty()){
             return response()->json([
-                'message' => 'Question not found'
+                'message' => 'No questions found for the specified category ID'
             ],404);
         }
+    
+        // Return the questions
         return response()->json([
-            'question' => $question_id
+            'results' => $results
         ],200);
     }
+    
 
     public function addQuestion(AddQuestionRequest $request){
         try{
+            echo $request->question;
             //add new question
             Question::create([
                 'question' => $request->question,
                 'option1' => $request->option1,
-                'option2' => $request->option2, 
+                'option2' => $request->option2,
                 'option3' => $request->option3,
-                'option4' => $request->option4
+                'option4' => $request->option4,
+                'correct_answer' => $request->correct_answer,
+                'id_quiz' => $request->id_quiz
             ]);
             //return Json response
             return response()->json([
@@ -69,6 +88,8 @@ class QuestionController extends Controller
             $question->option2 = $request->option2;
             $question->option3 = $request->option3;
             $question->option4 = $request->option4;
+            $question->correct_answer = $request->correct_answer;
+            $question->id_quiz = $request->id_quiz;
 
             //updating
             $question->save();

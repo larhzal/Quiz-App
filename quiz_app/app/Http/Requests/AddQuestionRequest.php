@@ -22,28 +22,43 @@ class AddQuestionRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules(): array
-    {
-       if(request()->isMethod('post')){
-        return[
-            'question' => 'required | string',
-            'option1' => 'required | string',
-            'option2' => 'required | string',
-            'option3' => 'required | string',
-            'option4' => 'required | string',
-            'correct_answer' => 'required | string'
-        ];
-       } else{
-        return[
-            'question' => 'required | string',
-            'option1' => 'required | string',
-            'option2' => 'required | string',
-            'option3' => 'required | string',
-            'option4' => 'required | string',
-            'correct_answer' => 'required | string'
-        ];
-       }
-    }
+    // public function rules(): array
+    // {
+    //    if(request()->isMethod('post')){
+    //     return[
+    //         'question' => 'required | string',
+    //         'option1' => 'required | string',
+    //         'option2' => 'required | string',
+    //         'option3' => 'required | string',
+    //         'option4' => 'required | string',
+    //         'correct_answer' => 'required | string',
+    //         'id_quiz' => 'required | string'
+    //     ];
+    //    } else{
+    //     return[
+    //         'question' => 'required | string',
+    //         'option1' => 'required | string',
+    //         'option2' => 'required | string',
+    //         'option3' => 'required | string',
+    //         'option4' => 'required | string',
+    //         'correct_answer' => 'required | string',
+    //         'id_quiz' => 'required | string'
+    //     ];
+    //    }
+    // }
+
+    public function rules()
+{
+    return [
+        'question' => 'required|string',
+        'option1' => 'required|string',
+        'option2' => 'required|string',
+        'option3' => 'required|string',
+        'option4' => 'required|string',
+        'correct_answer' => 'required|string',
+        'id_quiz' => 'required|integer',
+    ];
+}
 
     public function messages()
     {
@@ -54,7 +69,8 @@ class AddQuestionRequest extends FormRequest
                 'option2' => 'Option 2 is required',
                 'option3' => 'Option 3 is required',
                 'option4' => 'Option 4 is required',
-                'correct_answer' => 'Correct answer is required'
+                'correct_answer' => 'Correct answer is required',
+                'id_quiz' => 'id_quiz 4 is required'
             ];
         } else {
             return [
@@ -63,7 +79,8 @@ class AddQuestionRequest extends FormRequest
                 'option2' => 'Option 2 is required',
                 'option3' => 'Option 3 is required',
                 'option4' => 'Option 4 is required',
-                'correct_answer' => 'Correct answer is required'
+                'correct_answer' => 'Correct answer is required',
+                'id_quiz' => 'id_quiz 4 is required'
             ];
         }
     }

@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\QuizCategorieContoller;
+use App\Http\Controllers\UsersContoller;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,13 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 Route::get('/questions', [QuestionController::class, 'showQuestions']);
-Route::get('/questions/{id}', [QuestionController::class, 'showId']);
-Route::post('/addNewQuestion', [QuestionController::class, 'addQuestion']);
+//Route::get('/questions/{categoryId}', [QuestionController::class, 'showId']);
+Route::get('/quiz', [QuizCategorieContoller::class, 'showquiz']);
+Route::get('/user', [UsersContoller::class, 'showUser']);
+Route::post('/addNewQuetion', [QuestionController::class, 'addQuestion']);
 Route::post('/updateQuestion{id}', [QuestionController::class, 'updateQuestion']);
+// Example route definition for fetching CSRF token cookie
+Route::get('/csrf-cookie', function (Request $request) {
+    return response()->json(['csrf_token' => csrf_token()]);
+});
+
