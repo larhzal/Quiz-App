@@ -14,7 +14,7 @@ class AddQuestionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -64,9 +64,9 @@ class AddQuestionRequest extends FormRequest
                 'option3' => 'Option 3 is required',
                 'option4' => 'Option 4 is required',
                 'correct_answer' => 'Correct answer is required'
-            ];   
+            ];
         }
     }
 
-    
+
 }

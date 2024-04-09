@@ -21,5 +21,5 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::get('/questions', [QuestionController::class, 'showQuestions']);
 Route::get('/questions/{id}', [QuestionController::class, 'showId']);
-Route::get('/addNewQuetion', [QuestionController::class, 'addQuestion']);
+Route::post('/addNewQuestion', [QuestionController::class, 'addQuestion']);
 Route::post('/updateQuestion{id}', [QuestionController::class, 'updateQuestion']);
